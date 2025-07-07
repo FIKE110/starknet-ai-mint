@@ -1,6 +1,6 @@
 'use client'
 import type React from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, Upload, Sparkles, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -20,8 +20,6 @@ type FormValues = {
 
 
 export default function MintPage() {
-  alert("After deploying your NFT smart contract, PLEASE check the nft section of your wallet you can mint your first token by calling the mint function on the contract. You can also use the deploy function to deploy your NFT smart contract to the network.")
-  const [activeTab, setActiveTab] = useState<"prompt" | "upload">("prompt")
   const [prompt, setPrompt] = useState("")
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
   const [generatedImage, setGeneratedImage] = useState<string | null>(null)
@@ -158,6 +156,10 @@ const {send,data:dataTransaction}=useSendTransaction({})
       toast.error("Fill all required fields")
     }
   }
+  useEffect(() => {
+    window.alert("After deploying your NFT smart contract, PLEASE check the nft section of your wallet you can mint your first token by calling the mint function on the contract. You can also use the deploy function to deploy your NFT smart contract to the network.")
+  }, [])
+  const [activeTab, setActiveTab] = useState<"prompt" | "upload">("prompt")
 
 
   return (
